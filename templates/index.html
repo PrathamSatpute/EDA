@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to the EDA Web App</h1>
+    <p>Upload your data file to get started with exploratory data analysis.</p>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv,.xlsx,.json">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if filename %}
+    <h2>File uploaded successfully: {{ filename }}</h2>
+    <form action="/visualize" method="post">
+        <input type="hidden" name="filename" value="{{ filename }}">
+        <input type="submit" value="Generate Visualizations">
+    </form>
+    {% endif %}
+
+    <div class="tutorial">
+        <h3>How to use this app:</h3>
+        <ol>
+            <li>Upload your data file (CSV, Excel, or JSON format)</li>
+            <li>Click "Generate Visualizations" to see automatic analysis</li>
+            <li>Explore the results and download the report if needed</li>
+        </ol>
+    </div>
+</body>
+</html>

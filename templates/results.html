@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>EDA Results</h1>
+
+    <h2>Visualizations</h2>
+    {% for viz in visualizations %}
+        <div class="visualization">
+            {{ viz | safe }}
+        </div>
+    {% endfor %}
+
+    <h2>Summary Statistics</h2>
+    <div class="summary-stats">
+        {{ summary_stats | safe }}
+    </div>
+
+    <a href="{{ url_for('download_report') }}" class="download-btn">Download Report</a>
+
+    <a href="{{ url_for('index') }}" class="back-btn">Back to Upload</a>
+</body>
+</html>
